@@ -4,10 +4,12 @@
 1. Copy `pdf_action_tags.php` to a folder inside `redcap` root folder,  e.g. `redcap/customizations/`.
 2. Modify the REDCap code file `/PDF/index.php` and insert the following code just before the call to `renderPDF` (at the end of the file):
 
-   `// include custom code
+```php
+// include custom code
 include dirname(__FILE__)."/../../customizations/pdf_action_tags.php";
 // apply custom action tags
-$metadata = gr_apply_pdf_actiontags($metadata, $Data);`
+$metadata = gr_apply_pdf_actiontags($metadata, $Data);
+```
 
    Unfortunately, this has to be done as there is no suitable hook to inject the custom code.
    
@@ -19,7 +21,7 @@ $metadata = gr_apply_pdf_actiontags($metadata, $Data);`
 - `@PDF-HIDDENNODATA[="field_name"]`
    Omits a field from the PDF for 'form (empty)' or for 'form with saved data' when no actual data is present in the field specified in the parameter.
 - `@PDF-NOENUM`
-   When present in a field (sql, select, radio), the enumeration of the list members will be suppressed. Instead, the field is ìconvertedî to a text field, i.e. it will be represented with an empty line. When a data value is present, the value will be preserved.
+   When present in a field (sql, select, radio), the enumeration of the list members will be suppressed. Instead, the field is ‚Äúconverted‚Äù to a text field, i.e. it will be represented with an empty line. When a data value is present, the value will be preserved.
 - `@PDF-DATANOENUM`
    Behaves like @PDF-NOENUM, but only applies to 'form with saved data'.
 - `@PDF-WHITESPACE="number of lines"`
